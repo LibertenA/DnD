@@ -1,0 +1,24 @@
+.header {
+  height: 75px;
+}
+
+.header__list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  justify-content: center;
+  gap: 24px;
+}
+
+li {
+  align-items: center;
+}
+
+.header__button {
+  border-radius: 8px;
+  border: 1px solid black;
+  background-color: aquamarine;
+  padding: 10px;
+  cursor: pointer;
+}

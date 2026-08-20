@@ -1,0 +1,25 @@
+.characters {
+  margin: 32px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.characters_list {
+  display: flex;
+  gap: 16px;
+}
+
+.rest {
+  margin-top: 32px;
+  justify-content: center;
+  display: flex;
+  gap: 32px;
+}
+
+.rest__button {
+  background-color: bisque;
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid rgb(204, 173, 173);
+  cursor: pointer;
+}
