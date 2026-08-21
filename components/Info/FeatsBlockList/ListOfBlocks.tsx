@@ -3,14 +3,26 @@
 import Block from "../Block/Block"
 import Feat from "@/Types&Interfaces/Feat"
 import "./ListOfBlocks.css"
-import { mockFeats } from "@/mock-data/FeatsData"
 import { useState, useEffect } from "react"
+import { getFeats } from "@/lib/api/feats"
 
 export default function ListOfBlocks() {
   const [data, setData] = useState <Feat[]> ([])
 
   useEffect(() => {
-    setData(mockFeats);
+    async function loadCharacters() {
+      try {
+        const data = await getFeats();
+        setData(data);
+      } catch {
+        console.log("Не удалось загрузить черты");
+      } 
+      // finally {
+      //   setLoading(false)
+      // }
+    }
+
+    loadCharacters();
   }, [])
 
   return (

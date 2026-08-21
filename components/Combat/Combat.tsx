@@ -21,19 +21,15 @@ export default function Combat() {
   function openModal() {
     setIsModalOpen(true);
   }
-
   function closeModal() {
     setIsModalOpen(false);
   }
-
   function openModal2() {
       setIsModal2Open(true);
   }
-
   function closeModal2() {
     setIsModal2Open(false);
   }
-  
   const handleChildData = (updatedData: Npc[]) => {
     SetNpcData(updatedData);
 
@@ -41,7 +37,6 @@ export default function Combat() {
       openModal2();
     }
   };
-
   const confirmInitiative = (rolls: {
     entity: Record<number, number>
   }) => {
@@ -61,16 +56,18 @@ export default function Combat() {
   
   return (
     <div>
-      <div>
-        <button onClick={() => openModal()}>Выбрать npc</button>
-        <button onClick={() => {const payload = getCombatants(); console.log("START PAYLOAD:", payload); start(payload)}}> Начать бой</button>
-      </div>
+      {!isActive && (
+        <div>
+          <button onClick={() => openModal()}>Выбрать npc</button>
+          <button onClick={() => {const payload = getCombatants(); console.log("START PAYLOAD:", payload); start(payload)}}> Начать бой</button>
+        </div>
+      )}
+      
       {isActive && (
       <div>
-        <span>Ход: {currentTurn}</span>
-        <button onClick={() => end_turn}>Конец хода</button>
-        <button onClick={() => back_turn}>Назад</button>
-        <button onClick={() => attack}>Атаковать</button>
+        <p>Ход: {currentTurn}</p>
+        <button onClick={end_turn}>Конец хода</button>
+        <button onClick={back_turn}>Назад</button>
       </div>
       )}
 
@@ -91,6 +88,7 @@ export default function Combat() {
                   <div className={isCurrentTurn ? "turn_on" : ""}>
                     <h3>{combatantData.name}</h3>
                     <p>{combatantData.currentHp}</p>
+                    <button onClick={() => {const payload = {}; console.log("START PAYLOAD:", payload); attack(payload)}}>Атаковать</button>
                   </div>
                 </div>
               </div>

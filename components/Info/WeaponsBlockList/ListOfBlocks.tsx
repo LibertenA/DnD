@@ -3,14 +3,26 @@
 import Block from "../Block/Block"
 import Weapon from "@/Types&Interfaces/Weapon"
 import "./ListOfBlocks.css"
-import { mockWeapons } from "@/mock-data/WeaponData"
 import { useState, useEffect } from "react"
+import { getWeapons } from "@/lib/api/weapons"
 
 export default function ListOfBlocks() {
   const [data, setData] = useState <Weapon[]> ([])
 
   useEffect(() => {
-    setData(mockWeapons);
+    async function loadCharacters() {
+      try {
+        const data = await getWeapons();
+        setData(data);
+      } catch {
+        console.log("Не удалось загрузить оружие");
+      } 
+      // finally {
+      //   setLoading(false)
+      // }
+    }
+
+    loadCharacters();
   }, [])
 
   return (

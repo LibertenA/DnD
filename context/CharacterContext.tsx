@@ -18,8 +18,8 @@ const CharacterContext=createContext<CharacterContextValue | null>(null);
 export function CharacterProvider({children} : {children:ReactNode}){
 
   const [characters, setCharacters]=useState<Character[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
 
   /*useEffect(() => {
     async function loadCharacters() {
@@ -96,6 +96,7 @@ export function CharacterProvider({children} : {children:ReactNode}){
     setCharacters(updatedData);
     localStorage.setItem('character_data', JSON.stringify(updatedData));
   }
+
   return (
     <CharacterContext.Provider value={ {characters, setCharacters, getRest, changeValue, changeAbilityValue} }>
       {children}
@@ -105,7 +106,7 @@ export function CharacterProvider({children} : {children:ReactNode}){
 
 export function useCharacter(){
   const character = useContext(CharacterContext); 
-  if(!character) {
+  if (!character) {
     throw Error("useCharacter");
   }
   return character;

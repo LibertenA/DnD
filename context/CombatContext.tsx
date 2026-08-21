@@ -47,7 +47,7 @@ export function CombatProvider({children}:{children:ReactNode}){
 
 export function useCombat(){
   const combat = useContext(CombatContext); 
-  if(!combat) {
+  if (!combat) {
     throw Error("useCombat");
   }
   return combat;

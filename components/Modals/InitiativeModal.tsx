@@ -19,13 +19,12 @@ export default function InitiativeModal ({npc, characters, onConfirmInitiative}:
   const confirmEntityInintiative = (id: number, value: number) => {
     setRolls(prev => ({
       ...prev,
-      npc: {
+      entity: {
         ...prev.entity,
         [id]: value
       }
     }))
   }
-
 
   return (
     <div className="modal_overlay">
@@ -50,10 +49,7 @@ export default function InitiativeModal ({npc, characters, onConfirmInitiative}:
               </li>
             )
           })
-
           }
-        </ul>
-        <ul>
           {characters.map((item) => {
             return(
               <li key = {item.id} className = "">

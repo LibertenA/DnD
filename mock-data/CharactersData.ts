@@ -30,7 +30,8 @@ export const mockCharacters: Character[] = [
     weaponsID: 1,
     feats: [mockFeats[1]],
     spellcasting: {ability: "wis", slots: {1: {max: 4, current: 4}, 2: {max: 3, current: 3}}, spells: [], cantrips: []},
-    classResources: [{name:"Божественный канал", current: 1, max: 1, shortRestRecovery: true, longRestRecovery: true}]
+    classResources: [{name:"Божественный канал", current: 1, max: 1, shortRestRecovery: true, longRestRecovery: true}],
+    initiative: 0,
   },
   {
     id: 2,
@@ -58,7 +59,8 @@ export const mockCharacters: Character[] = [
     equipmentID: {armor : 2},
     weaponsID: 1,  
     feats: [mockFeats[2]],
-    classResources: [{name:"Очки ци", current: 4, max: 4, shortRestRecovery: true, longRestRecovery: true}]
+    classResources: [{name:"Очки ци", current: 4, max: 4, shortRestRecovery: true, longRestRecovery: true}],
+    initiative: 0,
   },
   {
     id: 3,
@@ -88,7 +90,8 @@ export const mockCharacters: Character[] = [
     feats: [mockFeats[5]],
     spellcasting: {ability: "wis", slots: {1: {max: 4, current: 4}, 2: {max: 3, current: 3}}, spells: [], cantrips: []},
     classResources: [{name:"Звездная карта", current: 2, max: 2, shortRestRecovery: false, longRestRecovery: true},
-                    {name:"Дикий облик", current: 2, max: 2, shortRestRecovery: true, longRestRecovery: true} ]
+                    {name:"Дикий облик", current: 2, max: 2, shortRestRecovery: true, longRestRecovery: true} ],
+    initiative: 0,
   },
   {
     id: 4,
@@ -116,6 +119,7 @@ export const mockCharacters: Character[] = [
     equipmentID: {armor : 5},
     weaponsID: 1,
     feats: [mockFeats[3]],
+    initiative: 0,
   },
   {
     id: 5,
@@ -143,6 +147,7 @@ export const mockCharacters: Character[] = [
     equipmentID: {armor : 4},
     weaponsID: 1,
     feats: [mockFeats[4]],
-    classResources: [{name:"Заряды ярости", current: 3, max: 3, shortRestRecovery: false, longRestRecovery: true}]
+    classResources: [{name:"Заряды ярости", current: 3, max: 3, shortRestRecovery: false, longRestRecovery: true}],
+    initiative: 0,
   }
 ]

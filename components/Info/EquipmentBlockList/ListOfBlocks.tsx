@@ -5,12 +5,25 @@ import Equipment from "@/Types&Interfaces/Equipment"
 import "./ListOfBlocks.css"
 import { mockEquipment } from "@/mock-data/EquipmentData"
 import { useState, useEffect } from "react"
+import { getEquipment } from "@/lib/api/equipment"
 
 export default function ListOfBlocks() {
   const [data, setData] = useState <Equipment[]> ([])
 
   useEffect(() => {
-    setData(mockEquipment);
+    async function loadCharacters() {
+      try {
+        const data = await getEquipment();
+        setData(data);
+      } catch {
+        console.log("Не удалось загрузить снаряжение");
+      } 
+      // finally {
+      //   setLoading(false)
+      // }
+    }
+
+    loadCharacters();
   }, [])
 
   return (

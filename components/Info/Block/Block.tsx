@@ -1,5 +1,4 @@
 import "./Block.css"
-import Feat from "@/Types&Interfaces/Feat";
 import BaseInterface from "@/Types&Interfaces/BaseInterface";
 
 type BlockProps = {

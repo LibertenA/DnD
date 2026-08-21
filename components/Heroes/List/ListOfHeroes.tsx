@@ -51,7 +51,7 @@ export default function List () {
                   initiative: calculateInitiative(character, 0)
               }}
               changeValue={changeValue}
-              changeAbilityValue={changeAbilityValue}
+              changeAbilityValue={changeAbilityValue} 
           />
         )
         )}

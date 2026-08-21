@@ -61,41 +61,60 @@ export function CombatReducer(state:CombatState, action:Action): CombatState{
         ...state,
         isActive: true,
         currentTurn: 1,
-        currentCombatantId: 0,
+        currentCombatantId: action.payload.combatants[0]?.id ?? 0,
         combatants: action.payload.combatants,
         npcs: action.payload.npc
       }
 
     case "END_TURN": {
-      if (state.currentCombatantId < state.combatants.length - 1) {
+      const currentIndex = state.combatants.findIndex(
+        c => c.id === state.currentCombatantId
+      );
+
+      if (currentIndex === -1) {
+        return state;
+      }
+
+      if (currentIndex < state.combatants.length - 1) {
         return {
           ...state,
-          currentCombatantId: state.currentCombatantId + 1,
-        } 
-      } 
+          currentCombatantId: state.combatants[currentIndex + 1].id,
+        };
+      }
 
       return {
         ...state,
         currentTurn: state.currentTurn + 1,
-        currentCombatantId: 0,
-      }
+        currentCombatantId: state.combatants[0]?.id ?? 0,
+      };
     }
 
     case "BACK_TURN": {
-      if (state.currentCombatantId === 0) {
+      const currentIndex = state.combatants.findIndex(
+        c => c.id === state.currentCombatantId
+      );
+
+      if (currentIndex === -1) {
+        return state;
+      }
+
+      if (currentIndex > 0) {
+        return {
+          ...state,
+          currentCombatantId: state.combatants[currentIndex - 1].id,
+        };
+      }
+
+      if (state.currentTurn > 1) {
         return {
           ...state,
           currentTurn: state.currentTurn - 1,
-          currentCombatantId: state.combatants.length - 1,
-        }
-      } else if (state.currentCombatantId < state.combatants.length - 1 && state.currentCombatantId != 0) {
-        return {
-          ...state,
-          currentCombatantId: state.currentCombatantId - 1,
-        } 
-      } 
+          currentCombatantId:
+            state.combatants[state.combatants.length - 1]?.id ?? 0,
+        };
+      }
 
-      return state
+      return state;
     }
 
     case "ATTACK": {
@@ -104,6 +123,12 @@ export function CombatReducer(state:CombatState, action:Action): CombatState{
       let defenderAC = 0;
       let damageRoll = 0;
       let isHit = false;
+      const attacker = state.characters.find(
+        c => c.id === action.payload.attackerId
+      );
+      const npc = state.npcs.find(
+        c => c.id === action.payload.attackerId
+      );
 
       if (action.payload.attacker_type === "character") {
         attackRoll = action.payload.attackRoll + calculateAttackBonus(mockWeapons, state.characters[action.payload.attackerId].weaponsID ?? 0, state.characters[action.payload.attackerId]);
